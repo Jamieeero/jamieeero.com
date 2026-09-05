@@ -1,22 +1,20 @@
-/* ==========================================================================
-   1. Custom properties (edit these to make the site "yours")
-   ========================================================================== */
 
 :root {
-    /* Color */
+
     --color-bg: #ffffff;
     --color-text: #1a1a1a;
     --color-muted: #5c5c5c;
     --color-border: #e0e0e0;
-    --color-accent: #1a1a1a; /* replace with a personal accent color */
+    --color-accent: #1a1a1a;
 
-    /* Type */
+
     --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --font-size-base: 1rem;
     --line-height-base: 1.6;
 
-    /* Layout */
+
     --container-width: 820px;
+    --title-width: 840px;
     --space-1: 0.5rem;
     --space-2: 1rem;
     --space-3: 1.5rem;
@@ -37,9 +35,6 @@
     }
 }
 
-/* ==========================================================================
-   2. Reset / base
-   ========================================================================== */
 
 *,
 *::before,
@@ -77,6 +72,10 @@ h1, h2, h3, h4 {
     margin: 0 0 var(--space-2);
 }
 
+h1, h2 {
+    width: var(--title-width);
+}
+
 p {
     margin: 0 0 var(--space-2);
 }
@@ -87,7 +86,7 @@ ul {
     list-style: none;
 }
 
-/* Respect reduced-motion preference */
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -99,14 +98,14 @@ ul {
     }
 }
 
-/* Visible keyboard focus */
+
 a:focus-visible,
 button:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
 }
 
-/* Utility: visually hidden but available to assistive tech */
+
 .sr-only {
     position: absolute;
     width: 1px;
@@ -119,7 +118,7 @@ button:focus-visible {
     border: 0;
 }
 
-/* Skip link: hidden until focused */
+
 .skip-link {
     position: absolute;
     left: -9999px;
@@ -135,13 +134,17 @@ button:focus-visible {
     top: var(--space-2);
 }
 
-/* ==========================================================================
-   3. Layout helpers
-   ========================================================================== */
 
 .container {
     width: 100%;
     max-width: var(--container-width);
+    margin-inline: auto;
+    padding-inline: var(--space-2);
+}
+
+.container-title {
+    width: 100%;
+    max-width: var(--title-width);
     margin-inline: auto;
     padding-inline: var(--space-2);
 }
@@ -155,9 +158,7 @@ button:focus-visible {
     border-bottom: none;
 }
 
-/* ==========================================================================
-   4. Header / navigation
-   ========================================================================== */
+
 
 .site-header {
     position: sticky;
@@ -201,7 +202,6 @@ button:focus-visible {
     color: var(--color-text);
 }
 
-/* Mobile nav toggle button: hidden on desktop */
 .nav-toggle {
     display: none;
     flex-direction: column;
@@ -221,9 +221,7 @@ button:focus-visible {
     background-color: var(--color-text);
 }
 
-/* ==========================================================================
-   5. Hero
-   ========================================================================== */
+
 
 .hero {
     padding-block: var(--space-6);
@@ -240,9 +238,7 @@ button:focus-visible {
     margin: 0;
 }
 
-/* ==========================================================================
-   6. Projects
-   ========================================================================== */
+
 
 .project-list {
     display: flex;
@@ -271,10 +267,6 @@ button:focus-visible {
     font-size: 0.875rem;
 }
 
-/* ==========================================================================
-   7. Skills
-   ========================================================================== */
-
 .skills-list {
     display: flex;
     flex-wrap: wrap;
@@ -282,9 +274,6 @@ button:focus-visible {
     color: var(--color-muted);
 }
 
-/* ==========================================================================
-   8. Contact
-   ========================================================================== */
 
 .contact-list {
     display: flex;
@@ -301,12 +290,8 @@ button:focus-visible {
     text-decoration: underline;
 }
 
-/* ==========================================================================
-   9. Gallery — full-width, alternating image/caption rows
-   ========================================================================== */
 
 .gallery-section {
-    /* Full width: no .container, own edge padding instead */
     padding-inline: var(--space-2);
     display: flex;
     flex-direction: column;
@@ -383,9 +368,7 @@ button:focus-visible {
     aspect-ratio: 3 / 4;
 }
 
-/* ==========================================================================
-   10. Footer
-   ========================================================================== */
+
 
 .site-footer {
     padding-block: var(--space-3);
@@ -396,10 +379,6 @@ button:focus-visible {
     color: var(--color-muted);
     font-size: 0.875rem;
 }
-
-/* ==========================================================================
-   11. Responsive: small screens (phone)
-   ========================================================================== */
 
 @media (max-width: 640px) {
     .nav-toggle {
