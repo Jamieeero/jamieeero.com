@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eagle Project</title>
+    <meta name="description" content="My Eagle Scout Project">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+    <div class="header-inner">
+        <a href="index.html" class="logo">Jamieeero</a>
+
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav">
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+            <span class="sr-only">Toggle menu</span>
+        </button>
+
+        <nav class="primary-nav" id="primaryNav">
+            <ul>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#work">Work</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="main">
+
+    <!-- TITLE + ABSTRACT -->
+    <section class="section" id="project-intro">
+        <div class="container">
+            <p class="back-link"><a href="index.html#work">&larr; All work</a></p>
+
+            <h1>Eagle Scout Project</h1>
+
+            <p> After hiking Mnt. Ascutney and taking panoramic images of the view from the top, I spent the next 2 years painting that experience.
+                Two 15 and 18-foot long murals hung facing each other in a high-foot-traffic hallway in a Veterans Affairs hospital. Scouting America
+                gave me a love for the outdoors and led me to experience so much in the natural world. Not everyone can have that, so I decided to make
+                it accessible for those who gave everything to this country.
+            </p>
+        </div>
+    </section>
+
+    <section class="section" id="project-pdf">
+        <div class="container">
+            <h2>Images and Documentation</h2>
+
+            <p class="pdf-toplink">
+                <a href="media/EagleProject.pdf" target="_blank" rel="noopener noreferrer">Open the PDF in a new tab &rarr;</a>
+            </p>
+
+            <div class="pdf-viewer">
+                <object data="media/EagleProject.pdf#view=FitH" type="application/pdf" class="pdf-embed">
+                    <p class="pdf-fallback">
+                        Your browser can't display embedded PDFs.
+                        <a href="media/EagleProject.pdf">Download the PDF</a> instead.
+                    </p>
+                </object>
+            </div>
+        </div>
+    </section>
+
+
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <p>&copy; <span id="year"></span> Your Name.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
