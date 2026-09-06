@@ -1,4 +1,3 @@
-
 :root {
 
     --color-bg: #ffffff;
@@ -6,9 +5,11 @@
     --color-muted: #5c5c5c;
     --color-border: #e0e0e0;
     --color-accent: #1a1a1a;
+    --color-shadow: rgba(0, 0, 0, 0.08);
 
 
     --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
     --font-size-base: 1rem;
     --line-height-base: 1.6;
 
@@ -23,16 +24,37 @@
     --space-6: 6rem;
 
     --header-height: 64px;
+    --progress-height: 3px;
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
         --color-bg: #121212;
         --color-text: #ececec;
         --color-muted: #a0a0a0;
         --color-border: #2a2a2a;
         --color-accent: #ececec;
+        --color-shadow: rgba(0, 0, 0, 0.35);
     }
+}
+
+/* manual toggle overrides win regardless of OS preference */
+:root[data-theme="dark"] {
+    --color-bg: #121212;
+    --color-text: #ececec;
+    --color-muted: #a0a0a0;
+    --color-border: #2a2a2a;
+    --color-accent: #ececec;
+    --color-shadow: rgba(0, 0, 0, 0.35);
+}
+
+:root[data-theme="light"] {
+    --color-bg: #ffffff;
+    --color-text: #1a1a1a;
+    --color-muted: #5c5c5c;
+    --color-border: #e0e0e0;
+    --color-accent: #1a1a1a;
+    --color-shadow: rgba(0, 0, 0, 0.08);
 }
 
 
@@ -54,6 +76,7 @@ body {
     line-height: var(--line-height-base);
     color: var(--color-text);
     background-color: var(--color-bg);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 img,
@@ -70,14 +93,21 @@ a {
 h1, h2, h3, h4 {
     line-height: 1.25;
     margin: 0 0 var(--space-2);
+    overflow-wrap: break-word;
 }
 
 h1, h2 {
-    width: var(--title-width);
+    /* was a fixed `width`, which forced an 840px-wide box even on
+       phones and pushed text past the viewport edge instead of
+       wrapping. max-width caps it on desktop; width:100% lets it
+       shrink to fit narrow screens. */
+    width: 100%;
+    max-width: var(--title-width);
 }
 
 p {
     margin: 0 0 var(--space-2);
+    overflow-wrap: break-word;
 }
 
 ul {
@@ -126,7 +156,7 @@ button:focus-visible {
     background: var(--color-bg);
     color: var(--color-text);
     padding: var(--space-1) var(--space-2);
-    z-index: 1000;
+    z-index: 1200;
 }
 
 .skip-link:focus {
@@ -159,6 +189,24 @@ button:focus-visible {
 }
 
 
+/* ---- scroll progress bar ---- */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: var(--progress-height);
+    width: 0%;
+    background-color: var(--color-accent);
+    z-index: 1101;
+    transition: width 0.12s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-progress {
+        transition: none;
+    }
+}
+
 
 .site-header {
     position: sticky;
@@ -187,19 +235,44 @@ button:focus-visible {
     text-decoration: none;
 }
 
+.nav-cluster {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
 .primary-nav ul {
     display: flex;
     gap: var(--space-3);
 }
 
 .primary-nav a {
+    position: relative;
     text-decoration: none;
     color: var(--color-muted);
+    padding-bottom: 3px;
+    transition: color 0.2s ease;
+}
+
+.primary-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 0%;
+    background-color: var(--color-text);
+    transition: width 0.25s ease;
 }
 
 .primary-nav a:hover,
 .primary-nav a:focus-visible {
     color: var(--color-text);
+}
+
+.primary-nav a:hover::after,
+.primary-nav a:focus-visible::after {
+    width: 100%;
 }
 
 .nav-toggle {
@@ -222,7 +295,59 @@ button:focus-visible {
 }
 
 
+/* ---- theme toggle ---- */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--color-text);
+    padding: 0;
+    transition: border-color 0.2s ease, transform 0.3s ease;
+}
 
+.theme-toggle:hover {
+    border-color: var(--color-text);
+}
+
+.theme-toggle:active {
+    transform: scale(0.92);
+}
+
+.theme-toggle svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.theme-toggle .icon-moon {
+    display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+    display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+    display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]):not([data-theme="dark"]) .theme-toggle .icon-sun {
+        display: none;
+    }
+    :root:not([data-theme="light"]):not([data-theme="dark"]) .theme-toggle .icon-moon {
+        display: block;
+    }
+}
+
+
+/* ---- hero ---- */
 .hero {
     padding-block: var(--space-6);
 }
@@ -230,20 +355,69 @@ button:focus-visible {
 .hero h1 {
     font-size: clamp(2rem, 5vw, 3rem);
     margin-bottom: var(--space-1);
+    opacity: 0;
+    animation: fade-up-in 0.7s ease forwards;
 }
 
 .hero-subtitle {
     color: var(--color-muted);
     font-size: 1.125rem;
     margin: 0;
+    opacity: 0;
+    animation: fade-up-in 0.6s ease forwards;
 }
 
+.hero-subtitle:nth-of-type(1) { animation-delay: 0.15s; }
+.hero-subtitle:nth-of-type(2) { animation-delay: 0.3s; }
+.hero-subtitle:nth-of-type(3) { animation-delay: 0.45s; }
+
+@keyframes fade-up-in {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+
+/* ---- scroll reveal (project cards, gallery entries, etc.) ---- */
+.reveal.reveal-init {
+    opacity: 0;
+    transform: translateY(28px);
+}
+
+.reveal {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal.reveal-init.is-visible {
+    opacity: 1;
+    transform: none;
+}
 
 
 .project-list {
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
+}
+
+.project {
+    padding: var(--space-3);
+    margin-inline: calc(var(--space-3) * -1);
+    border-radius: 10px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.project:hover,
+.project:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px var(--color-shadow);
+    background-color: var(--color-border);
 }
 
 .project h3 {
@@ -274,6 +448,36 @@ button:focus-visible {
     color: var(--color-muted);
 }
 
+
+.continue-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-top: var(--space-1);
+    padding: var(--space-2) var(--space-3);
+    margin-inline: calc(var(--space-3) * -1);
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--color-text);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.continue-link:hover,
+.continue-link:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px var(--color-shadow);
+    background-color: var(--color-border);
+}
+
+.continue-link .arrow {
+    transition: transform 0.25s ease;
+}
+
+.continue-link:hover .arrow,
+.continue-link:focus-visible .arrow {
+    transform: translateX(4px);
+}
 
 .contact-list {
     display: flex;
@@ -317,11 +521,14 @@ button:focus-visible {
 
 .gallery-image {
     flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 6px;
 }
 
 .gallery-placeholder {
     width: 100%;
     background-color: var(--color-border);
+    transition: transform 0.5s ease;
 }
 
 .gallery-item img {
@@ -329,11 +536,29 @@ button:focus-visible {
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.5s ease;
+}
+
+.gallery-entry:hover .gallery-placeholder,
+.gallery-entry:hover .gallery-item img {
+    transform: scale(1.04);
 }
 
 .gallery-caption {
     flex: 1;
     min-width: 0;
+}
+
+.gallery-index {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    border-top: 2px solid var(--color-accent);
+    padding-top: var(--space-1);
+    margin-bottom: var(--space-1);
 }
 
 .gallery-caption p {
@@ -417,6 +642,11 @@ button:focus-visible {
 
     .hero {
         padding-block: var(--space-5);
+    }
+
+    .project,
+    .continue-link {
+        margin-inline: 0;
     }
 
     .gallery-entry,

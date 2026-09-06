@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:font-family="http://www.w3.org/1999/xhtml" xmlns:font-weight="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,25 +11,39 @@
 
 <a class="skip-link" href="#main">Skip to content</a>
 
+<div class="scroll-progress" id="scrollProgress"></div>
+
 <header class="site-header">
     <div class="header-inner">
         <a href="#" class="logo">Jamieeero</a>
 
-        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav">
-            <span class="nav-toggle-bar"></span>
-            <span class="nav-toggle-bar"></span>
-            <span class="nav-toggle-bar"></span>
-            <span class="sr-only">Toggle menu</span>
-        </button>
+        <div class="nav-cluster">
+            <nav class="primary-nav" id="primaryNav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
 
-        <nav class="primary-nav" id="primaryNav">
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#work">Work</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+                </svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+
+            <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav">
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+                <span class="sr-only">Toggle menu</span>
+            </button>
+        </div>
     </div>
 </header>
 
@@ -57,7 +71,10 @@
                 FIRST Robotics Challenge as Freshman and spent the next 4 years learning how to design robots.
             </p>
 
-            <p><a href="About.html">Continued...</a></p>
+            <a class="continue-link" href="About.html">
+                Continued
+                <span class="arrow" aria-hidden="true">→</span>
+            </a>
         </div>
     </section>
 
@@ -83,7 +100,7 @@
         <div class="container">
             <div class="project-list">
 
-                <article class="project">
+                <article class="project reveal">
                     <h3><a href="eagleproject.html">Eagle Scout Project ↗</a></h3>
                     <p>After hiking Mnt. Ascutney and taking panoramic images of the view from the top, I spent the next 2 years painting that experience.
                         Two 15 and 18-foot long murals hung facing each other in a high-foot-traffic hallway in a Veterans Affairs hospital.
@@ -95,7 +112,7 @@
                     </ul>
                 </article>
 
-                <article class="project">
+                <article class="project reveal">
                     <h3><a href="https://www.firstinspires.org/programs/frc/">FIRST Robotics Challenge ↗</a></h3>
                     <p>Four years of designing, building, and iterating on FRC Robots and their subsystems on Team 95.</p>
                     <p><a href="https://www.frcteam95.com/">The Grasshoppers ↗</a></p>
@@ -107,7 +124,7 @@
                     </ul>
                 </article>
 
-                <article class="project">
+                <article class="project reveal">
                     <h3><a href="https://barnarts.org/">Barnarts ↗</a></h3>
                     <p>Lead Sound and Lighting Technician for Barnarts for 2 years with 4 years of experience in Theater.</p>
                     <ul class="project-meta">
@@ -117,7 +134,7 @@
                     </ul>
                 </article>
 
-                <article class="project">
+                <article class="project reveal">
                     <h3><a href="">Community Mural</a></h3>
                     <p>I designed and painted a 360 sqr foot mural of a large ocean wave at the local municipal pool.</p>
                     <ul class="project-meta">
@@ -127,7 +144,7 @@
                     </ul>
                 </article>
 
-                <article class="project">
+                <article class="project reveal">
                     <h3><a href="">Architecture</a></h3>
                     <p>2 years of architecture experience in designing new houses and additions to existing structures.</p>
                     <ul class="project-meta">
