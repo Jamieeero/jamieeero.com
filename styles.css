@@ -479,6 +479,66 @@ button:focus-visible {
     transform: translateX(4px);
 }
 
+/* ---- timeline page ---- */
+.timeline {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-left: var(--space-4);
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 0.4rem;
+    bottom: 0.4rem;
+    left: 0.5rem;
+    width: 2px;
+    background-color: var(--color-border);
+}
+
+.timeline-entry {
+    position: relative;
+    padding-bottom: var(--space-4);
+}
+
+.timeline-entry:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-entry::before {
+    content: "";
+    position: absolute;
+    left: 0.5rem;
+    top: 0.4rem;
+    transform: translateX(-650%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    box-shadow: 0 0 0 4px var(--color-bg);
+}
+
+.timeline-era {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: var(--space-1);
+}
+
+.timeline-entry h3 {
+    margin-bottom: var(--space-1);
+}
+
+.timeline-entry p {
+    margin-bottom: var(--space-1);
+}
+
+
 .contact-list {
     display: flex;
     flex-direction: column;

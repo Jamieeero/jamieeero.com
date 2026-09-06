@@ -76,7 +76,7 @@ if (revealEls.length) {
     revealEls.forEach((el) => el.classList.add('reveal-init'));
 
     // stagger items that share a common list/section wrapper
-    document.querySelectorAll('.project-list, .gallery-section').forEach((group) => {
+    document.querySelectorAll('.project-list, .gallery-section, .timeline').forEach((group) => {
         const items = group.querySelectorAll(':scope > .reveal');
         items.forEach((item, i) => {
             item.style.setProperty('--reveal-delay', `${Math.min(i * 0.08, 0.4)}s`);
