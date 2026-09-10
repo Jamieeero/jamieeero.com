@@ -295,8 +295,8 @@ button:focus-visible {
 }
 
 
-/* ---- theme toggle ---- */
-.theme-toggle {
+/* ---- dashboard link ---- */
+.dashboard-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -311,39 +311,17 @@ button:focus-visible {
     transition: border-color 0.2s ease, transform 0.3s ease;
 }
 
-.theme-toggle:hover {
+.dashboard-link:hover {
     border-color: var(--color-text);
 }
 
-.theme-toggle:active {
+.dashboard-link:active {
     transform: scale(0.92);
 }
 
-.theme-toggle svg {
+.dashboard-link svg {
     width: 16px;
     height: 16px;
-    transition: transform 0.4s ease, opacity 0.3s ease;
-}
-
-.theme-toggle .icon-moon {
-    display: none;
-}
-
-:root[data-theme="dark"] .theme-toggle .icon-sun {
-    display: none;
-}
-
-:root[data-theme="dark"] .theme-toggle .icon-moon {
-    display: block;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]):not([data-theme="dark"]) .theme-toggle .icon-sun {
-        display: none;
-    }
-    :root:not([data-theme="light"]):not([data-theme="dark"]) .theme-toggle .icon-moon {
-        display: block;
-    }
 }
 
 

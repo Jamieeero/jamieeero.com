@@ -24,30 +24,6 @@ if (yearEl) {
 }
 
 
-// ---- manual dark/light theme toggle ----
-// Falls back to the OS-level `prefers-color-scheme` (handled in CSS)
-// until the visitor picks explicitly; the choice then persists via
-// localStorage across visits.
-const themeToggle = document.getElementById('themeToggle');
-const rootEl = document.documentElement;
-const storedTheme = localStorage.getItem('theme');
-
-if (storedTheme === 'dark' || storedTheme === 'light') {
-    rootEl.setAttribute('data-theme', storedTheme);
-}
-
-if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const current = rootEl.getAttribute('data-theme') || (prefersDark ? 'dark' : 'light');
-        const next = current === 'dark' ? 'light' : 'dark';
-
-        rootEl.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
-    });
-}
-
-
 // ---- scroll progress bar ----
 const progressBar = document.getElementById('scrollProgress');
 
