@@ -400,6 +400,7 @@ button:focus-visible {
 .project-thumb {
     position: absolute;
     inset: 0;
+    z-index: 0;
     width: 100%;
     height: 100%;
     background-color: var(--color-border);
@@ -409,6 +410,9 @@ button:focus-visible {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 50% 50%;
+    transform: scale(1.1);          /* creates horizontal room to pan into */
+    transform-origin: -70% 50%;      /* shifts the visible crop rightward */
     display: block;
 }
 
@@ -418,18 +422,24 @@ button:focus-visible {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right,
-        var(--color-bg) 0%,
-        var(--color-bg) 38%,
-        transparent 85%);
+    z-index: 1;
+    background:
+        linear-gradient(to top,
+            var(--color-bg) 0%,
+            transparent 65%),
+        linear-gradient(to right,
+            var(--color-bg) 0%,
+            var(--color-bg) 42%,
+            transparent 90%);
     pointer-events: none;
 }
 
 .project-body {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     flex: 1;
     min-width: 0;
+    text-shadow: 0 1px 12px var(--color-bg);
 }
 
 .project:hover,
@@ -732,10 +742,14 @@ button:focus-visible {
     }
 
     .project::before {
-        background: linear-gradient(to right,
-            var(--color-bg) 0%,
-            var(--color-bg) 55%,
-            transparent 95%);
+        background:
+            linear-gradient(to top,
+                var(--color-bg) 0%,
+                transparent 70%),
+            linear-gradient(to right,
+                var(--color-bg) 0%,
+                var(--color-bg) 55%,
+                transparent 95%);
     }
 
     .gallery-entry,
